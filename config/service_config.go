@@ -6,11 +6,12 @@ import (
 )
 
 func NewServiceConfig(serviceName string) *ServiceConfig{
-	hostAddress, err := utils.GetFirstNotLoopbackIPv4Address()
-	if err != nil {
-		panic(err)
-	}
-	instanceId := strings.Join([]string{serviceName, hostAddress}, "-")
+	//hostAddress, err := utils.GetFirstNotLoopbackIPv4Address()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//instanceId := strings.Join([]string{serviceName, hostAddress}, "-")
+	instanceId := strings.Join([]string{serviceName, "zhengwei"}, "-")
 	return &ServiceConfig{
 		ServiceName: serviceName,
 		InstanceId:  instanceId,
