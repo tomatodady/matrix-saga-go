@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"errors"
 	"context"
+	"log"
 	"github.com/jeremyxu2010/matrix-saga-go/constants"
 	"github.com/jeremyxu2010/matrix-saga-go/metadata"
 )
@@ -53,6 +54,9 @@ func Decorate(decorated interface{}, target interface{}, before interface{}, aft
 				}
 			}
 			out, err = safeCallSlice(targetFunc, in)
+			if err != nil{
+				log.Println("safeCallSlice error: ", err)
+			}
 			if after != nil {
 				if m, ok := metadata.FromContext(ctx); ok {
 					m[constants.KEY_FUNCTION_CALL_ERROR] = err
@@ -73,6 +77,9 @@ func Decorate(decorated interface{}, target interface{}, before interface{}, aft
 				}
 			}
 			out, err = safeCall(targetFunc, in)
+			if err != nil{
+				log.Println("safeCallSlice error2: ", err)
+			}
 			if after != nil {
 				if m, ok := metadata.FromContext(ctx); ok {
 					m[constants.KEY_FUNCTION_CALL_ERROR] = err
